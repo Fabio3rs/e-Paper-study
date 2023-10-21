@@ -581,6 +581,18 @@ void Paint_DrawString_EN(UWORD Xstart, UWORD Ystart, const char * pString,
             Xpoint = Xstart;
             Ypoint += Font->Height;
         }
+        
+        if (*pString == '\n') {
+            Xpoint = Xstart;
+            Ypoint += Font->Height;
+            ++pString;
+            continue;
+        }
+
+        if (!isalnum(*pString) && !isspace(*pString)) {
+            ++pString;
+            continue;
+        }
 
         // If the Y direction is full, reposition to(Xstart, Ystart)
         if ((Ypoint  + Font->Height ) > Paint.Height ) {
@@ -596,7 +608,6 @@ void Paint_DrawString_EN(UWORD Xstart, UWORD Ystart, const char * pString,
         Xpoint += Font->Width;
     }
 }
-
 
 /******************************************************************************
 function: Display the string

@@ -183,6 +183,7 @@ else
 endif
 
 OBJ_C = $(wildcard ${OBJ_C_EPD} ${DIR_GUI}/*.c ${OBJ_C_Examples} ${DIR_Examples}/main.c ${DIR_Examples}/ImageData2.c ${DIR_Examples}/ImageData.c ${DIR_FONTS}/*.c )
+OBJ_CPP = $(wildcard ${OBJ_C_EPD} ${DIR_GUI}/*.cpp ${OBJ_C_Examples} ${DIR_Examples}/main.cpp ${DIR_Examples}/ImageData2.cpp ${DIR_Examples}/ImageData.cpp ${DIR_FONTS}/*.cpp )
 OBJ_O = $(patsubst %.c,${DIR_BIN}/%.o,$(notdir ${OBJ_C}))
 RPI_DEV_C = $(wildcard $(DIR_BIN)/dev_hardware_SPI.o $(DIR_BIN)/RPI_sysfs_gpio.o $(DIR_BIN)/DEV_Config.o )
 JETSON_DEV_C = $(wildcard $(DIR_BIN)/sysfs_software_spi.o $(DIR_BIN)/sysfs_gpio.o $(DIR_BIN)/DEV_Config.o )
@@ -220,7 +221,7 @@ JETSON: JETSON_DEV JETSON_epd
 
 TARGET = epd
 CC = gcc
-MSG = -g -O -ffunction-sections -fdata-sections -Wall
+MSG = -g -O -ffunction-sections -fdata-sections -Wall -I/usr/include/freetype2
 CFLAGS += $(MSG) -D $(EPD)
 
 RPI_epd:${OBJ_O}

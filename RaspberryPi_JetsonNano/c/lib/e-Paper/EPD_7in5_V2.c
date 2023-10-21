@@ -302,7 +302,7 @@ void EPD_7IN5_V2_Display(const UBYTE *blackimage)
     EPD_SendCommand(0x13);
     for (UDOUBLE j = 0; j < Height; j++) {
         for (UDOUBLE i = 0; i < Width; i++) {
-            EPD_SendData(~blackimage[i + j * Width]);
+            EPD_SendData(blackimage[i + j * Width]);
         }
     }
     EPD_7IN5_V2_TurnOnDisplay();
